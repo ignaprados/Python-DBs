@@ -20,10 +20,10 @@ class NeoApp:
             result = session.execute_write(self.crear_nodo_delito_neo, tipo, descripcion, fecha, hora, barrio)
             print(result)
 
-    # Función para crear Relacion (persona sospechoso de delito)
-    def crear_relacion_sospechoso_delito(self, nombre_persona, numero_delito):
+    # Función para crear Relacion (persona sospechoso/testigo/victima de delito)
+    def crear_relacion_sospechoso_delito(self, nombre_persona, numero_delito, relacion):
         with self.driver.session() as session:
-            result = session.execute_write(self.crear_nodo_delito_neo, tipo, descripcion, fecha, hora, barrio)
+            result = session.execute_write(self.crear_nodo_delito_neo, nombre_persona, numero_delito, relacion)
             print(result)
 
 
@@ -56,6 +56,12 @@ class NeoApp:
     @staticmethod
     def sospechosos_delito_neo(tx, delito):
         result = tx.run("""MATCH (sospechoso:PERSONA)-[:SOSPECHOSO]-> (delito:DELITO{descripcion:$delito}) RETURN sospechoso.nombre""", delito=delito)
+        return result.single()[0]
+
+    @staticmethod
+    def crear_relacion_sospechoso_delito_neo(tx, nombre_persona, numero_delito, relacion):
+        relacion = relacion.capitalize() # para que quede en mayuscula
+        result = tx.run("""MATCH (persona:PERSONA{nombre:$nombre_persona}) MATCH (delito:DELITO{numero:$numero_delito}) CREATE (persona)-[:$relacion]->(delito)""", nombre_persona=nombre_persona, numero_delito=numero_delito, relacion=relacion)
         return result.single()[0]
 
 
@@ -109,6 +115,12 @@ def menu():
     elif opcion == "2":
         os.system("cls")
         print("2 Crear una relacion ------------")
+        nombre_persona= input("nombre persona: ")
+        numero_delito = input("numero delito: ")
+        relacion = input("relacion (sospechoso, testigo, victima): ")
+
+        # se podría agregar si la persona no existe (hay que hacer otra query de neo)
+        neo.crear_relacion_sospechoso_delito(nombre_persona, numero_delito, relacion)
         time.sleep(5)
         menu()
 
