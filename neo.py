@@ -20,7 +20,12 @@ class NeoApp:
             result = session.execute_write(self.crear_nodo_delito_neo, tipo, descripcion, fecha, hora, barrio)
             print(result)
 
-    # Falta función para crear Relacion
+    # Función para crear Relacion (persona sospechoso de delito)
+    def crear_relacion_sospechoso_delito(self, nombre_persona, numero_delito):
+        with self.driver.session() as session:
+            result = session.execute_write(self.crear_nodo_delito_neo, tipo, descripcion, fecha, hora, barrio)
+            print(result)
+
 
     def dueno_auto(self):
         with self.driver.session() as session:
