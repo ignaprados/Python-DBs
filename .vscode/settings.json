@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "acusa",
+        "agregar",
         "ASOCIADO",
         "Bienvenido",
         "crear",
@@ -12,13 +13,16 @@
         "dueno",
         "duseño",
         "Elija",
+        "existe",
         "Falta",
         "fecha",
         "función",
+        "hacer",
         "hecho",
         "incorrecta",
         "incorrecto",
         "ingrese",
+        "mayuscula",
         "nodo",
         "nombre",
         "numero",
@@ -26,6 +30,9 @@
         "Opcion",
         "operacion",
         "operacionr",
+        "otra",
+        "podría",
+        "quede",
         "Quien",
         "Quienes",
         "relacion",
@@ -34,8 +41,10 @@
         "sospechoso",
         "sospechosos",
         "telefono",
+        "testigo",
         "tipo",
         "trabajo",
-        "uade"
+        "uade",
+        "victima"
     ]
 }
