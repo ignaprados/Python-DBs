@@ -1,6 +1,5 @@
 import uuid
 from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
 import time
 
 # Start Cassandra
